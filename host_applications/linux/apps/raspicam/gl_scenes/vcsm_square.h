@@ -1,6 +1,8 @@
 /*
 Copyright (c) 2013, Broadcom Europe Ltd
+Copyright (c) 2016, Tim Gover
 All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -24,27 +26,12 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#if !defined( VC_MEM_H )
-#define VC_MEM_H
 
-#define VC_MEM_IOC_MAGIC  'v'
+#ifndef VCSM_SQUARE_H
+#define VCSM_SQUARE_H
 
-#define VC_MEM_IOC_MEM_PHYS_ADDR    _IOR( VC_MEM_IOC_MAGIC, 0, unsigned long )
-#define VC_MEM_IOC_MEM_SIZE         _IOR( VC_MEM_IOC_MAGIC, 1, unsigned int )
-#define VC_MEM_IOC_MEM_BASE         _IOR( VC_MEM_IOC_MAGIC, 2, unsigned int )
-#define VC_MEM_IOC_MEM_LOAD         _IOR( VC_MEM_IOC_MAGIC, 3, unsigned int )
-#define VC_MEM_IOC_MEM_COPY         _IOWR( VC_MEM_IOC_MAGIC, 4, char *)
+#include "RaspiTex.h"
 
-#if defined( __KERNEL__ )
-#define VC_MEM_TO_ARM_ADDR_MASK 0x3FFFFFFF
+int vcsm_square_open(RASPITEX_STATE *state);
 
-extern unsigned long mm_vc_mem_phys_addr;
-extern unsigned int  mm_vc_mem_size;
-extern unsigned int  mm_vc_mem_base;
-extern int vc_mem_get_current_size( void );
-extern int vc_mem_get_current_base( void );
-extern int vc_mem_access_mem( int write_mem, void *buf, uint32_t vc_mem_addr, size_t num_bytes );
-#endif
-
-#endif  /* VC_MEM_H */
-
+#endif /* VCSM_SQUARE_H */
